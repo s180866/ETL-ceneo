@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ETL Ceneo", "ETL Ceneo\", "{0AED7EB8-83C4-478A-A49B-3B9485CB3614}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_51095"
+		Debug.AspNetCompiler.PhysicalPath = "ETL Ceneo\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51095\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_51095"
+		Release.AspNetCompiler.PhysicalPath = "ETL Ceneo\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51095\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "51095"
+		SlnRelativePath = "ETL Ceneo\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0AED7EB8-83C4-478A-A49B-3B9485CB3614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AED7EB8-83C4-478A-A49B-3B9485CB3614}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16052B31-9EBA-4D33-803E-B7438FBC732F}
+	EndGlobalSection
+EndGlobal
