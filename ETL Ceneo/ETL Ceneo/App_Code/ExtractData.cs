@@ -15,7 +15,7 @@ namespace ETL_Ceneo
         //= new Dictionary<string, Product>();
         public static Dictionary<string, Product> product_dicc = new Dictionary<string, Product>();
         public static Dictionary<string, List<Opinion>> opinions_dicc = new Dictionary<string, List<Opinion>>();//= new Dictionary<string, Product>();
-        private bool succsess = false;
+        public bool succsess = false;
 
         public ExtractData() { }
 
