@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ETL_Ceneo
 {
-    class ExtractData
+   public class ExtractData
     {
         //= new Dictionary<string, Product>();
         public static Dictionary<string, Product> product_dicc = new Dictionary<string, Product>();

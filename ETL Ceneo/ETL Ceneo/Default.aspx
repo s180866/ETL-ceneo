@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>ETL - Ceneo</title>
 
+  <script src="js/ceneo.js"></script>
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -35,7 +36,7 @@
       </div>
 		<br /> 
       <div class="row center">
-        <a href="index.html" id="download-button" class="btn-large waves-effect waves-light orange">Rozpocznij proces ETL</a>
+        <a href="#" id="download-button" class="btn-large waves-effect waves-light orange" onclick="getItemId()">Rozpocznij proces ETL</a>
       </div>
       <br>
 

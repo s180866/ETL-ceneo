@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ETL_Ceneo
 {
-    class TransformData
+    public  class TransformData
     {
         public static Dictionary<string, Product> product_transformed_dicc = new Dictionary<string, Product>();
         public static Dictionary<string, List<Opinion>> opinions_transformed_dicc = new Dictionary<string, List<Opinion>>();//= new Dictionary<string, Product>();
