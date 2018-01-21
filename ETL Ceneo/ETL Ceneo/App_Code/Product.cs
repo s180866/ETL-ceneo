@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ETL_Ceneo
 {
-    class Product
+    public class Product
     {
         //Klasa do przechowywania informacji o produktach
         public string Model { get; set; }

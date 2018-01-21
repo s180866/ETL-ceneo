@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ETL_Ceneo
 {
-    class Opinion
+    public class Opinion
     {
         //Klasa do przechowywania opinii
         public int ProductId { get; set; }
