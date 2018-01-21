@@ -92,7 +92,7 @@
 		 <div class="col l3 s12">
           <h5 class="white-text">Prowadzący:</h5>
           <ul>
-            <li><a class="white-text" href="#!"> mgr Katarzynę Wójcik</a></li>
+            <li><a class="white-text" href="#!"> mgr Katarzyna Wójcik</a></li>
 
           </ul>
         </div>
