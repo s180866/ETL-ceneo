@@ -1,5 +1,4 @@
-﻿function getItemId()
-{
+﻿function getItemId() {
     var itemId = document.getElementById("itemId").value;
     console.log(itemId);
 
@@ -9,7 +8,7 @@
     },
         function (error) { onfailurestartETL_2(error), null });
 
-  
+
 }
 
 
@@ -35,3 +34,17 @@ function onfailurestartETL_2(error) {
     alert("Proccess not started.\nPlease try again or contant us");
 
 }
+
+function hideButton() {
+    var button = document.getElementById('buttonDiv');
+    button.style.visibility = "hidden";
+    document.getElementById('preloader').innerHTML = '<div class="progress"> <div class="indeterminate"></div></div>'
+
+
+}
+
+function alertMe() {
+    alert("tbere");
+}
+
+

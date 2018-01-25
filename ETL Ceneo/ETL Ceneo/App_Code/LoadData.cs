@@ -14,6 +14,7 @@ public class LoadData
     }
     public static string LoadDataToDB(string id)
     {
+        //Pobiera liste istenijacych id i kluczy w bazie i sprawdza czy ma dodac czy zrobic update
         var IdList = ETL_Ceneo.MySqlConnector.GetDataFromMySQLArray("SELECT ProductId FROM etl_ceneo.product;", "ProductId");
         var IdListOpinion = ETL_Ceneo.MySqlConnector.GetDataFromMySQLArray("SELECT OpinionId FROM etl_ceneo.opinion;", "OpinionId");
 

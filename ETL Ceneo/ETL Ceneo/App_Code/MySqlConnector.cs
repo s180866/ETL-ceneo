@@ -39,7 +39,21 @@ namespace ETL_Ceneo
             return listPaths.ToArray();
         }
 
+        public static void TruncateTable()
+        {
+            MySqlConnection connection = new MySqlConnection(DB_CONN_STR);
+            string query = "TRUNCATE TABLE " + "etl_ceneo.opinion";
+            string query2 = "TRUNCATE TABLE " + "etl_ceneo.product";
 
+
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            MySqlCommand cmd2 = new MySqlCommand(query2, connection);
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            cmd2.ExecuteNonQuery();
+            connection.Close();
+        }
         public static void InsertProduct(Product prod, string queryType)
         {
 
@@ -93,13 +107,13 @@ namespace ETL_Ceneo
             string queryStr = "";
             if (queryType == "insert")
             {
-                queryStr = "INSERT INTO etl_ceneo.opinion (OpinionId, ProductId, Author, Stars, OpinionDate, Advantages, Disadvantages, Recommend )"
-                                       + "VALUES (@opinionId, @id, @author, @stars, @opinionDate, @advantages, @disadvantages, @recommend);";
+                queryStr = "INSERT INTO etl_ceneo.opinion (OpinionId, ProductId, Author, Stars, OpinionDate, Advantages, Disadvantages, Recommend, Comment )"
+                                       + "VALUES (@opinionId, @id, @author, @stars, @opinionDate, @advantages, @disadvantages, @recommend, @comment);";
                 CountInsertedRows += 1;
             }
             else
             {
-                queryStr = "UPDATE etl_ceneo.product SET ProductId = @id, Author = @author, Stars = @stars, OpinionDate = @opinionDate, Advantages = @advantages, Disadvantages = @disadvantages, Recommend = @recommend "
+                queryStr = "UPDATE etl_ceneo.product SET ProductId = @id, Author = @author, Stars = @stars, OpinionDate = @opinionDate, Advantages = @advantages, Disadvantages = @disadvantages, Recommend = @recommend, Comment = @comment "
                         + " WHERE OpinionId = @opinionId;";
                 CountUpdatedRows += 1;
             }
@@ -115,7 +129,7 @@ namespace ETL_Ceneo
 
                 cmd.Parameters.AddWithValue("@id", o.ProductId);
                 cmd.Parameters.AddWithValue("@opinionId", string.Concat(o.Author, o.OpinionDateStr));
-
+                cmd.Parameters.AddWithValue("@comment", o.Comment);
                 cmd.Parameters.AddWithValue("@author", o.Author);
                 cmd.Parameters.AddWithValue("@stars", o.Stars);
                 cmd.Parameters.AddWithValue("@opinionDate", o.OpinionDate);

@@ -73,6 +73,7 @@ namespace ETL_Ceneo
                     op.OpinionDateStr = o.OpinionDateStr;
                     op.OpinionDate = new DateTime(year, month, day, hour, minutes, seconds);
                     op.Recommend = o.Recommend;
+                    op.Comment = o.Comment;
                 }
                 catch { }
 

@@ -26,17 +26,18 @@ namespace ETL_Ceneo
             this.succsess = true;
         }
 
-
+        //budowanie linka
         public static string UrlBuilderReview(string id)
         {
             return String.Concat("https://www.ceneo.pl/", id, "#tab=reviews");
         }
-
+        //budowanie linka dla opini -> lista linow
         public static string UrlBuilderReviewPages(string id, string page)
         {
             return String.Concat("https://www.ceneo.pl/", id, "/opinie-", page);
         }
 
+        //pobranie calej strony jako string
         public static string GetHtmlContent(string url)
         {
             string resp = "";
@@ -49,6 +50,7 @@ namespace ETL_Ceneo
             return resp;
         }
 
+        //sprawdzenie czy jest przekierowanie
         public static string GetRedirectUrl(string url)
         {
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
@@ -59,7 +61,7 @@ namespace ETL_Ceneo
                 return response.Headers["Location"];
             }
         }
-
+        //lista linkow
         public static List<string> GetRedirectUrlList(string id)
         {
             List<string> urls = new List<string>();
@@ -84,6 +86,7 @@ namespace ETL_Ceneo
             return urls;
         }
 
+        //pobranie opini
         public void GetOpinions(string id)
         {
             HtmlDocument doc = new HtmlDocument();
@@ -91,20 +94,21 @@ namespace ETL_Ceneo
             List<Opinion> reviews = new List<Opinion>();
             bool firstLoop = true;
             
-
+            //szablony wyszukiwania
             string authorPattern = "<div class=\"reviewer-name-line\">\\s*(.+?)\\s*</div>";
             string starsPattern = "<span class=\"review-score-count\">\\s*(.+?)\\s*</span>";
             string commentPattern = "<p class=\"product-review-body\">\\s*(.+?)\\s*</p>";
             string recommendPattern = "<em class=\"product-recommended\">\\s*(.+?)\\s*</div>";
             string timePattern = "<time datetime=\"\\s*(.+?)\\s*\">";
             
-
+            //tworzy liste wywolujac funcje Get...
             var urlsList = GetRedirectUrlList(id);
 
             foreach (var u in urlsList)
             {
                 List<string> reviewDivHtml;
 
+                //dla kazdego linka z listy pobiera strone
                 var websiteContent = ExtractData.GetHtmlContent(u);
 
                 doc.LoadHtml(websiteContent);
@@ -123,8 +127,10 @@ namespace ETL_Ceneo
 
                 foreach (var div in reviewDivHtml)
                 {
+                   
                     op = new Opinion();
                     doc.LoadHtml(div.ToString());
+                    //div.To string - to jest dywizja (kwadrat ) z opinia
                     op.Author = Regex.Match(div.ToString(), authorPattern, RegexOptions.Singleline).Groups[1].Value.ToString();
                     op.Stars = Regex.Match(div.ToString(), starsPattern, RegexOptions.Singleline).Groups[1].Value.ToString();
                     op.Comment = Regex.Match(div.ToString(), commentPattern, RegexOptions.Singleline).Groups[1].Value.ToString();

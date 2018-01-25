@@ -1,11 +1,38 @@
-﻿<!DOCTYPE html>
+﻿<%@ Page Language="C#" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+<!DOCTYPE html>
+
+<form runat="server">
 <html lang="en">
-<head>
+<head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
     <title>ETL - Ceneo</title>
+    <%--<script src="js/ceneo.js"></script>--%>
+    <script type="text/javascript">
+        function alertMe() {
 
-    <script src="js/ceneo.js"></script>
+            alert("Proces ETL rozpoczęty. Poczekaj aż operacja zacznie wykonana, następnie strona zostanie przeładowana");
+
+        }
+        function alertDB() {
+
+            alert("Baza danych wyczyszczona");
+
+        }
+
+
+
+        function hideButton() {
+            var button = document.getElementById('buttonDiv');
+            button.style.visibility = "hidden";
+            document.getElementById('preloader').innerHTML = '<div class="progress"> <div class="indeterminate"></div></div>'
+
+
+        }
+
+    </script>
+    <%--</script>--%>
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
@@ -16,7 +43,9 @@
         <div class="nav-wrapper container">
             <a id="logo-container" href="#" class="brand-logo"></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="#">Rozpocznij proces dla nowego produktu</a></li>
+                <li><asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Nowy produkt" class="btn-large waves-effect waves-light blue"></asp:Button></li></li>
+                <li><asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Wyczyść baze danych" class="btn-large waves-effect waves-light blue"></asp:Button></li>
+
             </ul>
 
             <ul id="nav-mobile" class="side-nav">
@@ -32,66 +61,78 @@
             <h1 class="header center orange-text">Aplikacja ETL</h1>
             <h5 class="header center orange-text">Pobieranie treści z portalu ceneo.pl</h5>
             <br />
-            <div class="input-field col s6">
 
-                <input id="itemId" type="text" class="validate">
-                <label for="itemId">
-                    <center>
-                    Kod produktu</label>
-            </div>
-            <br />
-            <div class="row center">
-                <a href="#" id="download-button" class="btn-large waves-effect waves-light orange" onclick="getItemId()">Rozpocznij proces ETL</a>
-            </div>
+            
+                <div class="input-field col s6">
+                    <input id="itemId" type="text" class="validate" runat="server">
+                    <label for="itemId">
+                        <center>
+                        Kod produktu</label>
+
+                </div>
+
+                <br />
+                <div id="buttonDiv" class="row center">
+
+                    <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Rozpocznij proces ETL" class="btn-large waves-effect waves-light orange"></asp:Button>
+                </div>
+
+                <div id="statsDiv" >
+                </div>
+
+            </form>
             <br>
         </div>
     </div>
+
+
 
     <div class="container">
         <div class="section">
 
             <!--   Icon Section   -->
             <div class="row">
-                <form id="formFields" runat="server" class="col s12">
-                    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" EnableScriptGlobalization="true">
-                        <Services>
-                            <asp:ServiceReference Path="~/WebService.asmx" />
-                        </Services>
-                    </asp:ScriptManager>
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-                            <h5 class="center">Extract</h5>
 
-                            <p class="light">Rozpocznij podproces Extract, którego zadaniem jest pobranie niezbędnych informacji dla podanego produktu.</p>
-                        </div>
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
+                        <h5 class="center">Extract</h5>
+
+                        <p class="light">Rozpocznij podproces Extract, którego zadaniem jest pobranie niezbędnych informacji dla podanego produktu.</p>
                     </div>
+                </div>
 
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-                            <h5 class="center">Transform</h5>
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
+                        <h5 class="center">Transform</h5>
 
-                            <p class="light">Rozpocznij proces Transform, którego zadaniem jest przekształcenie danych pobranych w poprzednim kroku. Warunkiem jest pomyślne ukończenie podprocesu Extract.</p>
-                        </div>
+                        <p class="light">Rozpocznij proces Transform, którego zadaniem jest przekształcenie danych pobranych w poprzednim kroku. Warunkiem jest pomyślne ukończenie podprocesu Extract.</p>
                     </div>
+                </div>
 
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-                            <h5 class="center">Load</h5>
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+                        <h5 class="center">Load</h5>
 
-                            <p class="light">Załaduj dane do bazy danych oraz wyświetl je użytkownikowi aplikacji. Warunkiem jest pomyślne ukończenie podprocesów Extract oraz Load.</p>
-                        </div>
+                        <p class="light">Załaduj dane do bazy danych oraz wyświetl je użytkownikowi aplikacji. Warunkiem jest pomyślne ukończenie podprocesów Extract oraz Load.</p>
                     </div>
-                </form>
-                
+                </div>
+
+
             </div>
 
         </div>
         <br>
         <br>
     </div>
+
+    <div id="productHeader" runat="server"></div>
+
+
+    <div id="reviewsDiv" runat="server"></div>
+
 
     <footer class="page-footer orange">
         <div class="container">
