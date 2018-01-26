@@ -77,10 +77,10 @@
                     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Rozpocznij proces ETL" class="btn-large waves-effect waves-light orange"></asp:Button>
                 </div>
 
-                <div id="statsDiv" >
+                <div id="statsDiv" runat="server" >
                 </div>
 
-            </form>
+            
             <br>
         </div>
     </div>
@@ -127,7 +127,7 @@
         <br>
         <br>
     </div>
-
+</form>
     <div id="productHeader" runat="server"></div>
 
 
